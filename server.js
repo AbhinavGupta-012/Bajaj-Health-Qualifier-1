@@ -2,6 +2,8 @@ require("dotenv").config();
 
 const express = require('express');
 
+console.log("Gemini key loaded:", !!process.env.GEMINI_API_KEY);
+
 const healthRoute = require("./routes/health.js");
 const bfhlRoute = require("./routes/bfhl.js");
 

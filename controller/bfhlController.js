@@ -2,6 +2,7 @@ const fib = require("../services/fibonacci");
 const prime = require("../services/prime");
 const lcm = require("../services/lcm");
 const hcf = require("../services/hcf");
+const askGemini = require("../services/gemini");
 
 module.exports = async (req, res) => {
     const data = req.body;
@@ -28,6 +29,9 @@ module.exports = async (req, res) => {
         case "hcf":
             output = hcf(value);
             break;
+        case "AI":
+            output = await askGemini(value);
+            break;
         default:
             return res.status(400).json({
                 is_success: false,
@@ -39,6 +43,6 @@ module.exports = async (req, res) => {
     return res.status(200).json({
         is_success: true,
         official_email: "abhinav1758.be23@chitkara.edu.in",
-        data: JSON.stringify(output)
+        data: output
     });
 };
